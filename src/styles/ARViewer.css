@@ -1,0 +1,407 @@
+/* AR Modal Overlay - matching modal overlay style */
+.ar-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+  animation: arFadeIn 0.3s ease;
+}
+
+@keyframes arFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* AR Modal Content */
+.ar-modal-content {
+  position: relative;
+  width: 95%;
+  max-width: 1400px;
+  height: 90vh;
+  background: #0f0f0f; /* Matching featured-section background */
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  animation: arSlideIn 0.4s ease;
+}
+
+@keyframes arSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Exit Button - matching featured-btn style */
+.ar-exit-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(5px);
+}
+
+.ar-exit-btn:hover {
+  background: #ff6b35;
+  color: white;
+  transform: translateY(-2px);
+  border-color: #ff6b35;
+}
+
+.exit-icon {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.exit-text {
+  font-size: 14px;
+}
+
+/* Container */
+.ar-container {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  height: 100%;
+}
+
+/* 3D View */
+.ar-view {
+  position: relative;
+  background: #0f0f0f;
+  overflow: hidden;
+}
+
+/* Device badge */
+.device-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(26, 26, 26, 0.9); /* matching featured-card background */
+  color: #ff9500;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  z-index: 10;
+  font-weight: 500;
+}
+
+/* Controls Panel - matching featured-card style */
+.ar-controls {
+  background: #1a1a1a; /* matching featured-card background */
+  padding: 30px 25px;
+  overflow-y: auto;
+  border-left: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+/* Product Title - matching featured-content h3 */
+.ar-product-title {
+  margin: 0 0 20px 0;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+/* Device Messages */
+.ar-device-message {
+  margin-bottom: 25px;
+}
+
+.message-icon {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.success-message {
+  background: rgba(0, 200, 83, 0.1);
+  color: #00c853;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: 1px solid rgba(0, 200, 83, 0.3);
+  display: flex;
+  align-items: center;
+}
+
+.warning-message {
+  background: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  display: flex;
+  align-items: center;
+}
+
+.info-message {
+  background: rgba(23, 162, 184, 0.1);
+  color: #17a2b8;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: 1px solid rgba(23, 162, 184, 0.3);
+  display: flex;
+  align-items: center;
+}
+
+/* AR Action Button - matching featured-btn style */
+.ar-action-btn {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
+}
+
+.ar-action-btn:hover {
+  background: #ff6b35;
+  color: white;
+  transform: translateY(-2px);
+  border-color: #ff6b35;
+}
+
+.ar-action-btn.android:hover {
+  background: #00c853;
+  color: white;
+  border-color: #00c853;
+}
+
+.ar-action-btn.ios:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.ar-action-btn.desktop:hover {
+  background: #ff6b35;
+  color: white;
+  border-color: #ff6b35;
+}
+
+.btn-icon {
+  font-size: 20px;
+}
+
+/* Android instructions */
+.android-instructions,
+.ios-instructions {
+  background: rgba(26, 26, 26, 0.8);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.android-instructions h4,
+.ios-instructions h4 {
+  margin: 0 0 15px 0;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.android-instructions ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.android-instructions li {
+  color: #aaa; /* matching featured-content p color */
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Convert button - matching featured-btn style */
+.convert-btn {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+}
+
+.convert-btn:hover {
+  background: #ff6b35;
+  color: white;
+}
+
+/* Instructions - matching featured-content style */
+.ar-instructions {
+  background: rgba(26, 26, 26, 0.8);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.ar-instructions h4 {
+  margin: 0 0 15px 0;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.ar-instructions ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.ar-instructions li {
+  color: #aaa; /* matching featured-content p color */
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.ar-instructions li strong {
+  color: #ff9500; /* matching featured-price color */
+}
+
+/* Bottom close button - matching featured-btn style */
+.ar-close-bottom {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: #aaa;
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.ar-close-bottom:hover {
+  background: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
+/* Loader */
+.ar-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: white;
+  background: rgba(26, 26, 26, 0.9);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.loader-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 107, 53, 0.1);
+  border-radius: 50%;
+  border-top-color: #ff6b35;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Mobile Responsive - matching FeaturedProducts media query */
+@media (max-width: 768px) {
+  .ar-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+  
+  .ar-modal-content {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  
+  .ar-view {
+    height: 50vh;
+  }
+  
+  .ar-controls {
+    padding: 20px;
+    border-left: none;
+    border-top: 1px solid rgba(255, 107, 53, 0.1);
+  }
+  
+  .ar-product-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .ar-exit-btn {
+    top: 10px;
+    right: 10px;
+    padding: 8px 16px;
+  }
+  
+  .exit-text {
+    display: none; /* Hide text on mobile, show only icon */
+  }
+  
+  .exit-icon {
+    font-size: 20px;
+  }
+  
+  .device-badge {
+    top: 10px;
+    left: 10px;
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  .food-emoji {
+    font-size: 3.5rem;
+  }
+}
+
