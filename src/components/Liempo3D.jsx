@@ -10,8 +10,8 @@ const Loader = () => (
   </Html>
 );
 
-const SisigModel = () => {
-  const { scene } = useGLTF('/assets/Sisig3D.glb');
+const LiempoModel = () => {
+  const { scene } = useGLTF('/assets/Liempo3D.glb');
   
   // Force high-quality texture settings
   useEffect(() => {
@@ -61,9 +61,9 @@ const SisigModel = () => {
 };
 
 // Preload model
-useGLTF.preload('/assets/Sisig3D.glb');
+useGLTF.preload('/assets/Liempo3D.glb');
 
-const Product3D = () => {
+const Liempo3D = () => {
   return (
     <Canvas 
       camera={{ position: [4, 3, 8], fov: 45 }}
@@ -107,7 +107,7 @@ const Product3D = () => {
       
       <Center>
         <Suspense fallback={<Loader />}>
-          <SisigModel />
+          <LiempoModel />
         </Suspense>
       </Center>
       
@@ -141,4 +141,4 @@ const Product3D = () => {
   );
 };
 
-export default Product3D;
+export default Liempo3D;

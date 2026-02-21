@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/ProductModal.css';
-import Product3D from './Product3D.jsx';
+import Sisig3D from './Sisig3D.jsx';
+import Porkchop3D from './Porkchop3D.jsx';
+import Liempo3D from './Liempo3D.jsx';
 import ARViewer from './ARViewer.jsx';
 
 const ProductModal = ({ isOpen, onClose, product }) => {
@@ -13,24 +15,72 @@ const ProductModal = ({ isOpen, onClose, product }) => {
 
   const riceOptions = [
     { id: 'regular', name: 'Regular Rice', price: 0 },
-    { id: 'java', name: 'Java Rice', price: 15 }
   ];
 
   const gravyOptions = [
     { id: 'none', name: 'No Gravy', price: 0 },
     { id: 'regular', name: 'Regular Gravy', price: 0 },
-    { id: 'extra', name: 'Extra Gravy', price: 10 }
   ];
 
+  // Debug: Log the product to see what we're getting
+  console.log('Product in modal:', product);
+
+  const render3DModel = () => {
+    if (!product) return <Sisig3D product={product} />;
+    
+    const productName = product.name?.toLowerCase() || '';
+    console.log('Rendering 3D model for:', productName);
+    
+    // Check for porkchop (handle different variations)
+    if (productName.includes('porkchop') || productName.includes('pork chop')) {
+      console.log('Loading Porkchop3D');
+      return <Porkchop3D product={product} />;
+    }
+    // Check for liempo
+    else if (productName.includes('liempo') || productName.includes('pork belly')) {
+      console.log('Loading Liempo3D');
+      return <Liempo3D product={product} />;
+    }
+    // Check for sisig
+    else if (productName.includes('sisig')) {
+      console.log('Loading Sisig3D');
+      return <Sisig3D product={product} />;
+    }
+    
+    // Default fallback
+    console.log('No match found, using default Sisig3D');
+    return <Sisig3D product={product} />;
+  };
+
+  const getModelPath = () => {
+    if (!product) return '/assets/Sisig3D.glb';
+    
+    const productName = product.name?.toLowerCase() || '';
+    
+    if (productName.includes('porkchop') || productName.includes('pork chop')) {
+      return '/assets/Porkchop3D.glb';
+    } else if (productName.includes('liempo') || productName.includes('pork belly')) {
+      return '/assets/Liempo3D.glb';
+    } else {
+      return '/assets/Sisig3D.glb';
+    }
+  };
+
   const handleAddToCart = () => {
+    // Extract numeric price (remove ₱ and any commas)
+    const basePrice = parseInt(product.price.replace(/[₱,]/g, '')) || 0;
+    const ricePrice = selectedRice !== 'regular' ? 15 : 0;
+    const gravyPrice = selectedGravy === 'extra' ? 10 : 0;
+    
     const order = {
       product: product,
       rice: selectedRice,
       gravy: selectedGravy,
       quantity: quantity,
-      totalPrice: (parseInt(product.price.replace('₱', '')) + 
-        (selectedRice !== 'regular' ? 10 : 0) + 
-        (selectedGravy === 'extra' ? 10 : 0)) * quantity
+      basePrice: basePrice,
+      ricePrice: ricePrice,
+      gravyPrice: gravyPrice,
+      totalPrice: (basePrice + ricePrice + gravyPrice) * quantity
     };
     console.log('Added to cart:', order);
     onClose(); // This closes the main modal
@@ -43,7 +93,7 @@ const ProductModal = ({ isOpen, onClose, product }) => {
 
   const handleMainModalClose = (e) => {
     // Only close if clicking the overlay, not if AR is open
-    if (!showAR) {
+    if (!showAR && e.target.className === 'modal-overlay') {
       onClose();
     }
   };
@@ -57,7 +107,7 @@ const ProductModal = ({ isOpen, onClose, product }) => {
           <div className="modal-grid">
             {/* 3D Product View - Always visible */}
             <div className="modal-3d-view">
-              <Product3D product={product} />
+              {render3DModel()}
             </div>
             
             {/* Product Details & Customization */}
@@ -149,7 +199,7 @@ const ProductModal = ({ isOpen, onClose, product }) => {
         <ARViewer 
           product={product} 
           onClose={handleARClose}
-          modelPath="/assets/Sisig3D.glb"
+          modelPath={getModelPath()}
         />
       )}
     </>
